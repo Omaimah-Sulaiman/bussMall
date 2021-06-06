@@ -95,16 +95,40 @@ function handelClicking(event){
 
 
 function gettingList(){
-    let ul = document.getElementById('list');
+    // let ul = document.getElementById('list');
+    // for(let i = 0 ; i <BusMallImage.allImage.length; i++ ){
+    //     console.log('hi')
+    //   let li = document.createElement('li');
+    //   ul.appendChild(li);
+    //   li.textContent = `${BusMallImage.allImage[i].nameImage} had ${BusMallImage.allImage[i].votes} Votes ,and was seen ${BusMallImage.allImage[i].shown} times.`;
+    // }
+    
+    let  th = document.getElementById('product');
+    let  thVote = document.getElementById('vote');
+    let  thShown = document.getElementById('shown');
     for(let i = 0 ; i <BusMallImage.allImage.length; i++ ){
-        console.log('hi')
-      let li = document.createElement('li');
-      ul.appendChild(li);
-      li.textContent = `${BusMallImage.allImage[i].nameImage} had ${BusMallImage.allImage[i].votes} Votes ,and was seen ${BusMallImage.allImage[i].shown} times.`;
-    }
+        let tr=document.createElement('tr')
+        th.appendChild(tr)
+        let td =document.createElement('td');
+        tr.appendChild(td)
+        td.textContent = BusMallImage.allImage[i].nameImage
+
+        let trVote=document.createElement('tr')
+        thVote.appendChild(trVote)
+        let tdVoites =document.createElement('td');
+        trVote.appendChild(tdVoites)
+        tdVoites.textContent=BusMallImage.allImage[i].votes
+
+        let trShown=document.createElement('tr')
+        thShown.appendChild(trShown)
+        let tdShown=document.createElement('td')
+        trShown.appendChild(tdShown)
+        tdShown.textContent=BusMallImage.allImage[i].shown
+
+
   
   }
 
-
+}
 
 
