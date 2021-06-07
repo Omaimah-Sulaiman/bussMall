@@ -4,20 +4,22 @@ let leftSideImage=document.getElementById('leftSide')
 let midSideImage=document.getElementById('midSide')
 let rightSideImage=document.getElementById('rightSide')
   
-arrOfImageSrc=['img/bag.jpg','img/banana.jpg','img/bathroom.jpg','img/breakfast.jpg','img/bubblegum - Copy.jpg','img/chair.jpg'
+let arrOfImageSrc=['img/bag.jpg','img/banana.jpg','img/bathroom.jpg','img/breakfast.jpg','img/bubblegum - Copy.jpg','img/chair.jpg'
 ,'img/cthulhu.jpg','img/dog-duck.jpg','img/dragon.jpg','img/pen.jpg','img/pet-sweep.jpg','img/scissors.jpg','img/shark.jpg','img/sweep.png'
 ,'img/tauntaun.jpg','img/unicorn.jpg','img/usb.gif','img/water-can.jpg','img/wine-glass.jpg']
 
-arrOfImageName=['bag','banana','bathroom','breakfast','bubblegum','chair','cthulhu','dog','dragon','pen','pet-sweep','scissors'
+let arrOfImageName=['bag','banana','bathroom','breakfast','bubblegum','chair','cthulhu','dog','dragon','pen','pet-sweep','scissors'
 ,'shark','sweep','tauntaun','unicorn','usb','water','glass']
 
-
+let arrOfNames=[]
 function BusMallImage(nameImage,soruce){
     this.nameImage=nameImage;
     this.soruce=soruce;
     this.votes = 0;
     this.shown = 0;
    BusMallImage.allImage.push(this);
+   arrOfNames.push(this.nameImage)
+   
 }
 BusMallImage.allImage=[];
 
@@ -40,100 +42,137 @@ let leftSide=0
 let rightSide=0
 let midSide=0   
 function render(){
+    
        leftSide=getIndexRandomly()
     rightSide=getIndexRandomly()
     midSide=getIndexRandomly()
-//     console.log(leftSide)
-//    console.log(rightSide)
-//    console.log(midSide)
-    
-   
+
    while(leftSide===rightSide||rightSide===midSide||leftSide===midSide){
        leftSide=getIndexRandomly()
-       midSide=getIndexRandomly()
-    //    console.log(leftSide)
-    //    console.log(rightSide)
-    //    console.log(midSide)
-       
-    }
-    
-    leftSideImage.src= BusMallImage.allImage[leftSide].soruce
-    midSideImage.src= BusMallImage.allImage[midSide].soruce
-    rightSideImage.src= BusMallImage.allImage[rightSide].soruce
+       midSide=getIndexRandomly() 
 }
-let buttonEvent;
+
+leftSideImage.src= BusMallImage.allImage[leftSide].soruce
+BusMallImage.allImage[leftSide].shown++
+midSideImage.src= BusMallImage.allImage[midSide].soruce
+BusMallImage.allImage[rightSide].shown++
+rightSideImage.src= BusMallImage.allImage[rightSide].soruce
+BusMallImage.allImage[midSide].shown++
+}
 render()
+
+
+
+let term=[]
+let buttonEvent;
+let imageClicked=[]
 let countsClick=0;
-let round=25;
+let round=10;
 let imageEvent=document.getElementById('section')
 imageEvent.addEventListener('click',handelClicking)
 function handelClicking(event){
     countsClick++
-    console.log(event.target.id)
-    // console.log(BusMallImage.allImage.shown++)
+    // console.log(event.target.id)
+    
     if(round >= countsClick){
         if (event.target.id=='leftSide'){
              BusMallImage.allImage[leftSide].votes++
-             BusMallImage.allImage[leftSide].shown++
+            
+             imageClicked.push(BusMallImage.allImage[leftSide])
         }else if(event.target.id=='rightSide'){
             BusMallImage.allImage[rightSide].votes++
-            BusMallImage.allImage[rightSide].shown++
+            
+            imageClicked.push(BusMallImage.allImage[rightSide])
         }else if(event.target.id=='midSide'){
             BusMallImage.allImage[midSide].votes++
-            BusMallImage.allImage[midSide].shown++
+            
+            imageClicked.push(BusMallImage.allImage[midSide])
+        }else{
+            return
         }
+    //     for(let x=0;x<imageClicked.length;x++){
+    //         console.log(imageClicked)
+    //         // for( var i = 0; i < BusMallImage.allImage.length; i++){ 
+    //         //     if ( BusMallImage.allImage[i] === imageClicked[x]) { 
+    //         //         BusMallImage.allImage.push(BusMallImage.allImage.splice(i, 1)); 
+    //         //         i--; 
+    //         //         // console.log('array of ',BusMallImage.allImage)               
+    //         //     }
+                
+    //         // }
+    //         // console.log('term',BusMallImage.allImage);
+            
+    //         // console.log(imageClicked.includes(BusMallImage.allImage))
+    //     //   console.log(BusMallImage.allImage.nameImage.includes(imageClicked[i]))
+            
+    // }
         render()
 
     }else{
         // handelClickingButton()
-         buttonEvent=document.getElementById('butt')
+        buttonEvent=document.getElementById('butt')
         buttonEvent.addEventListener('click',handelClickingButton)
         imageEvent.removeEventListener('click',handelClicking)
     }
     
     
 }
+console.log(imageClicked)
 
 function handelClickingButton(event){
     gettingList()
+    getChart()
     buttonEvent.removeEventListener('click',handelClickingButton)
 }
-
+let arrOfShown=[]
+let arrOfVotes=[];
 function gettingList(){
     let ul = document.getElementById('list');
     for(let i = 0 ; i <BusMallImage.allImage.length; i++ ){
-        console.log('hi')
+      
+        arrOfVotes.push(BusMallImage.allImage[i].votes)
+        arrOfShown.push(BusMallImage.allImage[i].shown)
+     
       let li = document.createElement('li');
       ul.appendChild(li);
       li.textContent = `${BusMallImage.allImage[i].nameImage} had ${BusMallImage.allImage[i].votes} Votes ,and was seen ${BusMallImage.allImage[i].shown} times.`;
     }
-    
-    // let  th = document.getElementById('product');
-    // let  thVote = document.getElementById('vote');
-    // let  thShown = document.getElementById('shown');
-    // for(let i = 0 ; i <BusMallImage.allImage.length; i++ ){
-    //     let tr=document.createElement('tr')
-    //     th.appendChild(tr)
-    //     let td =document.createElement('td');
-    //     tr.appendChild(td)
-    //     td.textContent = BusMallImage.allImage[i].nameImage
 
-    //     let trVote=document.createElement('tr')
-    //     thVote.appendChild(trVote)
-    //     let tdVoites =document.createElement('td');
-    //     trVote.appendChild(tdVoites)
-    //     tdVoites.textContent=BusMallImage.allImage[i].votes
-
-    //     let trShown=document.createElement('tr')
-    //     thShown.appendChild(trShown)
-    //     let tdShown=document.createElement('td')
-    //     trShown.appendChild(tdShown)
-    //     tdShown.textContent=BusMallImage.allImage[i].shown
-
-
-  
-//   }
 
 }
 
+function notRepateImage(){
+console.log(BusMallImage.allImage)
 
+
+}
+notRepateImage()
+
+
+function getChart(){
+
+
+    let ctx = document.getElementById('myChart')
+    let myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: arrOfNames,
+            datasets: [{
+                label: '# of Votes',
+                data: arrOfVotes,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.4)',
+                ],
+                borderWidth: 1
+            },{
+              label: '# of shown',
+              data: arrOfShown,
+              backgroundColor: [
+                  'rgb(210, 108, 253)',
+              ],
+              borderWidth: 1
+          }
+          ]
+        },
+    });
+    }
