@@ -93,8 +93,10 @@ function handelClicking(event){
 }
 
 
-
-function gettingList(){
+let buttonEvent=document.getElementById('butt')
+buttonEvent.addEventListener('click',handelClicking)
+function handelClicking(event){
+// function gettingList(){
     let ul = document.getElementById('list');
     for(let i = 0 ; i <BusMallImage.allImage.length; i++ ){
         console.log('hi')
