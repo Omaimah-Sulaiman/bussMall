@@ -61,7 +61,7 @@ function render(){
     midSideImage.src= BusMallImage.allImage[midSide].soruce
     rightSideImage.src= BusMallImage.allImage[rightSide].soruce
 }
-
+let buttonEvent;
 render()
 let countsClick=0;
 let round=25;
@@ -85,19 +85,21 @@ function handelClicking(event){
         render()
 
     }else{
-        handelClickingButton()
+        // handelClickingButton()
+         buttonEvent=document.getElementById('butt')
+        buttonEvent.addEventListener('click',handelClickingButton)
         imageEvent.removeEventListener('click',handelClicking)
-        buttonEvent.removeEventListener('click',handelClickingButton)
     }
     
-
+    
 }
 
-
-let buttonEvent=document.getElementById('butt')
-buttonEvent.addEventListener('click',handelClickingButton)
 function handelClickingButton(event){
-// function gettingList(){
+    gettingList()
+    buttonEvent.removeEventListener('click',handelClickingButton)
+}
+
+function gettingList(){
     let ul = document.getElementById('list');
     for(let i = 0 ; i <BusMallImage.allImage.length; i++ ){
         console.log('hi')
