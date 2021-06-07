@@ -64,7 +64,7 @@ function render(){
 
 render()
 let countsClick=0;
-let round=10;
+let round=25;
 let imageEvent=document.getElementById('section')
 imageEvent.addEventListener('click',handelClicking)
 function handelClicking(event){
@@ -85,8 +85,9 @@ function handelClicking(event){
         render()
 
     }else{
-        gettingList()
+        handelClickingButton()
         imageEvent.removeEventListener('click',handelClicking)
+        buttonEvent.removeEventListener('click',handelClickingButton)
     }
     
 
@@ -94,8 +95,8 @@ function handelClicking(event){
 
 
 let buttonEvent=document.getElementById('butt')
-buttonEvent.addEventListener('click',handelClicking)
-function handelClicking(event){
+buttonEvent.addEventListener('click',handelClickingButton)
+function handelClickingButton(event){
 // function gettingList(){
     let ul = document.getElementById('list');
     for(let i = 0 ; i <BusMallImage.allImage.length; i++ ){
