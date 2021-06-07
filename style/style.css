@@ -1,8 +1,11 @@
 header{
     background-color: rgb(210, 108, 253);
-    padding: 5%;
+    padding: 30px;
 }
-
+main #section{
+  border : 6px soild burlywood;
+  /* background-color: burlywood; */
+}
 
 img{
     width:20% ;
@@ -12,7 +15,12 @@ img{
     margin: 4%;
 }
 
-table {
+footer{
+  padding: 20px;
+  background-color: rgb(210, 108, 253);
+}
+
+/* table {
     width:100%;
   }
   table, th, td {
@@ -20,8 +28,8 @@ table {
     border-collapse: collapse;
   }
   th, td {
-    padding: 15px;
-    text-align: left;
-  }
+    /* padding: 15px; */
+    /* text-align: left; */
+  /* } */ 
  
  
