@@ -1,6 +1,5 @@
   
 let leftSideImage=document.getElementById('leftSide')
-// leftSideImage.setAttribute('src','img/bag.jpg');
 let midSideImage=document.getElementById('midSide')
 let rightSideImage=document.getElementById('rightSide')
   
@@ -40,76 +39,74 @@ function getIndexRandomly(){
 }
 let leftSide=0
 let rightSide=0
-let midSide=0   
+let midSide=0 
+
 function render(){
+    let showing=[]
     
-       leftSide=getIndexRandomly()
+    leftSide=getIndexRandomly()
     rightSide=getIndexRandomly()
     midSide=getIndexRandomly()
+    
+    while(leftSide===rightSide||rightSide===midSide||leftSide===midSide||showing.includes(leftSide)||showing.includes(midSide)
+            ||showing.includes(rightSide)){
 
-   while(leftSide===rightSide||rightSide===midSide||leftSide===midSide){
-       leftSide=getIndexRandomly()
-       midSide=getIndexRandomly() 
-}
+        leftSide=getIndexRandomly()
+        midSide=getIndexRandomly() 
+        console.log(showing);
+    }
+    showing=[leftSide,midSide,rightSide]
+    // showing.push(leftSide)
+    // showing.push(midSide)
+    // showing.push(rightSide)
 
-leftSideImage.src= BusMallImage.allImage[leftSide].soruce
-BusMallImage.allImage[leftSide].shown++
-midSideImage.src= BusMallImage.allImage[midSide].soruce
-BusMallImage.allImage[rightSide].shown++
-rightSideImage.src= BusMallImage.allImage[rightSide].soruce
-BusMallImage.allImage[midSide].shown++
+    
+    leftSideImage.src= BusMallImage.allImage[leftSide].soruce
+    BusMallImage.allImage[leftSide].shown++
+    midSideImage.src= BusMallImage.allImage[midSide].soruce
+    BusMallImage.allImage[rightSide].shown++
+    rightSideImage.src= BusMallImage.allImage[rightSide].soruce
+    BusMallImage.allImage[midSide].shown++
 }
 render()
 
 
 
-let term=[]
+
 let buttonEvent;
-let imageClicked=[]
+// let imageClicked=[]
 let countsClick=0;
 let round=10;
 let imageEvent=document.getElementById('section')
 imageEvent.addEventListener('click',handelClicking)
+
 function handelClicking(event){
+
+
     countsClick++
     // console.log(event.target.id)
     
     if(round >= countsClick){
+        // console.log(BusMallImage.allImage)
+        
         if (event.target.id=='leftSide'){
-             BusMallImage.allImage[leftSide].votes++
+            BusMallImage.allImage[leftSide].votes++
             
-             imageClicked.push(BusMallImage.allImage[leftSide])
+            // imageClicked.push(BusMallImage.allImage[leftSide])
         }else if(event.target.id=='rightSide'){
             BusMallImage.allImage[rightSide].votes++
             
-            imageClicked.push(BusMallImage.allImage[rightSide])
+            // imageClicked.push(BusMallImage.allImage[rightSide])
         }else if(event.target.id=='midSide'){
             BusMallImage.allImage[midSide].votes++
             
-            imageClicked.push(BusMallImage.allImage[midSide])
+            // imageClicked.push(BusMallImage.allImage[midSide])
         }else{
             return
-        }
-    //     for(let x=0;x<imageClicked.length;x++){
-    //         console.log(imageClicked)
-    //         // for( var i = 0; i < BusMallImage.allImage.length; i++){ 
-    //         //     if ( BusMallImage.allImage[i] === imageClicked[x]) { 
-    //         //         BusMallImage.allImage.push(BusMallImage.allImage.splice(i, 1)); 
-    //         //         i--; 
-    //         //         // console.log('array of ',BusMallImage.allImage)               
-    //         //     }
-                
-    //         // }
-    //         // console.log('term',BusMallImage.allImage);
-            
-    //         // console.log(imageClicked.includes(BusMallImage.allImage))
-    //     //   console.log(BusMallImage.allImage.nameImage.includes(imageClicked[i]))
-            
-    // }
-        render()
+        } render()
 
     }else{
-        // handelClickingButton()
+      
         buttonEvent=document.getElementById('butt')
         buttonEvent.addEventListener('click',handelClickingButton)
         imageEvent.removeEventListener('click',handelClicking)
@@ -117,7 +114,7 @@ function handelClicking(event){
     
     
 }
-console.log(imageClicked)
+// console.log(imageClicked)
 
 function handelClickingButton(event){
     gettingList()
@@ -140,13 +137,6 @@ function gettingList(){
 
 
 }
-
-function notRepateImage(){
-console.log(BusMallImage.allImage)
-
-
-}
-notRepateImage()
 
 
 function getChart(){
