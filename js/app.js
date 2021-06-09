@@ -37,17 +37,17 @@ function getIndexRandomly(){
     return randomIndex
 
 }
+
 let leftSide=0
 let rightSide=0
 let midSide=0 
-
 function render(){
     let showing=[]
     
     leftSide=getIndexRandomly()
     rightSide=getIndexRandomly()
     midSide=getIndexRandomly()
-    
+    console.log('image before',leftSide,rightSide,midSide,showing)
     while(leftSide===rightSide||rightSide===midSide||leftSide===midSide||showing.includes(leftSide)||showing.includes(midSide)
             ||showing.includes(rightSide)){
 
@@ -55,18 +55,18 @@ function render(){
         midSide=getIndexRandomly() 
         // console.log(showing);
     }
-    showing=[leftSide,midSide,rightSide]
     // showing.push(leftSide)
     // showing.push(midSide)
     // showing.push(rightSide)
-
     
+    console.log('image after',leftSide,rightSide,midSide,showing)
     leftSideImage.src= BusMallImage.allImage[leftSide].soruce
     BusMallImage.allImage[leftSide].shown++
     midSideImage.src= BusMallImage.allImage[midSide].soruce
     BusMallImage.allImage[rightSide].shown++
     rightSideImage.src= BusMallImage.allImage[rightSide].soruce
     BusMallImage.allImage[midSide].shown++
+    showing=[leftSide,midSide,rightSide]
 }
 render()
 arrOfVo=[]
