@@ -19,6 +19,9 @@ footer{
   padding: 20px;
   background-color: rgb(210, 108, 253);
 }
+#listLS{
+  padding-left: 50%;
+}
 
 /* table {
     width:100%;

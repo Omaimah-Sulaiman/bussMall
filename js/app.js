@@ -53,7 +53,7 @@ function render(){
 
         leftSide=getIndexRandomly()
         midSide=getIndexRandomly() 
-        console.log(showing);
+        // console.log(showing);
     }
     showing=[leftSide,midSide,rightSide]
     // showing.push(leftSide)
@@ -69,10 +69,7 @@ function render(){
     BusMallImage.allImage[midSide].shown++
 }
 render()
-
-
-
-
+let localStor=[]
 let buttonEvent;
 // let imageClicked=[]
 let countsClick=0;
@@ -88,7 +85,6 @@ function handelClicking(event){
     
     if(round >= countsClick){
         // console.log(BusMallImage.allImage)
-        
         if (event.target.id=='leftSide'){
             BusMallImage.allImage[leftSide].votes++
             
@@ -99,14 +95,15 @@ function handelClicking(event){
             // imageClicked.push(BusMallImage.allImage[rightSide])
         }else if(event.target.id=='midSide'){
             BusMallImage.allImage[midSide].votes++
-            
             // imageClicked.push(BusMallImage.allImage[midSide])
         }else{
             return
         } render()
-
+        // savingToLocalStorge()
+        
     }else{
-      
+        
+        
         buttonEvent=document.getElementById('butt')
         buttonEvent.addEventListener('click',handelClickingButton)
         imageEvent.removeEventListener('click',handelClicking)
@@ -118,6 +115,8 @@ function handelClicking(event){
 
 function handelClickingButton(event){
     gettingList()
+     localStorage.setItem('Product',JSON.stringify(BusMallImage.allImage));
+    //  console.log(Product)
     getChart()
     buttonEvent.removeEventListener('click',handelClickingButton)
 }
@@ -166,3 +165,35 @@ function getChart(){
         },
     });
     }
+
+
+
+    // function savingToLocalStorge(){
+        
+    //     localStor=localStorage.setItem('Product',JSON.stringify(BusMallImage.allImage));
+       
+   
+    // }
+    // console.log(localStor);
+    //   savingToLocalStorge()
+
+      let product=[]
+      function toGetDataFromLS(){
+         let data= localStorage.getItem('Product')
+         console.log(data)
+         console.log(JSON.parse(data))
+         let product=JSON.parse(data)
+        //  product=BusMallImage.allImage
+         let ul = document.getElementById('listLS');
+         console.log(product.length)
+         for(let i = 0 ; i <product.length; i++ ){
+      
+            arrOfVotes.push(product.votes)
+            arrOfShown.push(product.shown)
+         
+          let li = document.createElement('li');
+          ul.appendChild(li);
+          li.textContent = `${product[i].nameImage} had ${product[i].votes} Votes ,and was seen ${product[i].shown} times.`;
+        }
+      }
+     toGetDataFromLS()
