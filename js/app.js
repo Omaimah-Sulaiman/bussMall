@@ -197,7 +197,7 @@ function getChart(){
             //      let li = document.createElement('li');
             //      ul.appendChild(li);
             //      li.textContent = `${product[i].nameImage} had ${product[i].votes} Votes ,and was seen ${product[i].shown} times.`;
-                }
+                // }
         }
 
         render()
