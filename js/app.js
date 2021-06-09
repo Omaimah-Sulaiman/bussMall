@@ -185,20 +185,20 @@ function getChart(){
          console.log(JSON.parse(data))
           product=JSON.parse(data)
         
-          if (product){
-              BusMallImage.allImage = product;
-              let ul = document.getElementById('listLS');
-              console.log(product.length)
-              for(let i = 0 ; i <product.length; i++ ){
-                  
-                  arrOfVotes.push(product.votes)
-                  arrOfShown.push(product.shown)
-                  
-                  let li = document.createElement('li');
-                  ul.appendChild(li);
-                  li.textContent = `${product[i].nameImage} had ${product[i].votes} Votes ,and was seen ${product[i].shown} times.`;
+        //  let ul = document.getElementById('listLS');
+         if (product){
+             BusMallImage.allImage = product;
+            //  console.log(product.length)
+            //  for(let i = 0 ; i <product.length; i++ ){
+                 
+            //      arrOfVotes.push(product.votes)
+            //      arrOfShown.push(product.shown)
+                 
+            //      let li = document.createElement('li');
+            //      ul.appendChild(li);
+            //      li.textContent = `${product[i].nameImage} had ${product[i].votes} Votes ,and was seen ${product[i].shown} times.`;
                 }
-            }
+        }
 
         render()
       }
