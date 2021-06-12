@@ -55,10 +55,7 @@ function render(){
         midSide=getIndexRandomly() 
         // console.log(showing);
     }
-    // showing.push(leftSide)
-    // showing.push(midSide)
-    // showing.push(rightSide)
-    
+  
     console.log('image after',leftSide,rightSide,midSide,showing)
     leftSideImage.src= BusMallImage.allImage[leftSide].soruce
     BusMallImage.allImage[leftSide].shown++
@@ -70,9 +67,8 @@ function render(){
 }
 render()
 arrOfVo=[]
-// let localStor=[]
+
 let buttonEvent;
-// let imageClicked=[]
 let countsClick=0;
 let round=10;
 let imageEvent=document.getElementById('section')
@@ -89,14 +85,14 @@ function handelClicking(event){
         if (event.target.id=='leftSide'){
            arrOfVo= BusMallImage.allImage[leftSide].votes++
          
-            // imageClicked.push(BusMallImage.allImage[leftSide])
+            
         }else if(event.target.id=='rightSide'){
             arrOfVo= BusMallImage.allImage[rightSide].votes++
          
-            // imageClicked.push(BusMallImage.allImage[rightSide])
+          
         }else if(event.target.id=='midSide'){
             arrOfVo=  BusMallImage.allImage[midSide].votes++
-            // imageClicked.push(BusMallImage.allImage[midSide])
+        
          
         }else{
             return
@@ -176,7 +172,7 @@ function getChart(){
    
     }
     // console.log(localStor);
-    //   savingToLocalStorge()
+  
 
       let product=[]
       function toGetDataFromLS(){
@@ -188,16 +184,7 @@ function getChart(){
         //  let ul = document.getElementById('listLS');
          if (product){
              BusMallImage.allImage = product;
-            //  console.log(product.length)
-            //  for(let i = 0 ; i <product.length; i++ ){
-                 
-            //      arrOfVotes.push(product.votes)
-            //      arrOfShown.push(product.shown)
-                 
-            //      let li = document.createElement('li');
-            //      ul.appendChild(li);
-            //      li.textContent = `${product[i].nameImage} had ${product[i].votes} Votes ,and was seen ${product[i].shown} times.`;
-                // }
+          
         }
 
         render()
